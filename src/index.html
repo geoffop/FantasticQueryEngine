@@ -5,12 +5,44 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
-        <title>Geoff Poole | Developer</title>
-        <meta name="description" content="Geoff Poole | Developer"/>
-
+        <title>Fantastic Resource Engine</title>
+        <meta name="description" content="Fantastic Resource Engine"/>
+        <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.24.0/js/msal-browser.min.js"></script>
+        <script type="text/javascript">
+            var msalConfig = {
+                auth: {
+                    clientId: "c397c1cc-c3d0-465f-9a2c-f7bc3d608a0b"
+                }
+            };
+            function login() {
+                var loginRequest = {
+                    scopes: ["user.read", "openid.read"]
+                };
+                var msalInstance = new msal.PublicClientApplication(msalConfig);
+                msalInstance.loginPopup({}).then((response) => {
+                    if (response === null) {
+                        alert("There was an error authenticating you (response was null)");
+                        return;
+                    }
+                    console.log(response);
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            alert(this.responseText);
+                        }
+                    };
+                    xhttp.open("GET", "https://management.azure.com/subscriptions/9345cdc4-0b2b-4268-b99f-33720e0dc8a9/resources?api-version=2021-04-01", true);
+                    xhttp.setRequestHeader("Content-type", "application/json", 'Authorization', 'Bearer ' + response.accessToken);
+                    xhttp.send();
+                    console.log(xhttp.responseText)
+                }).catch((error) => {
+                    console.error(error);
+                });
+            }
+        </script>
         <script type="text/javascript">
             function myfunction() {
-              window.db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+                window.db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
                 var msg;
 
                 window.db.transaction(function (tx) {
@@ -23,7 +55,7 @@
             }
 
             function testmyfunction() {
-              window.db.transaction(function (tx) {
+                window.db.transaction(function (tx) {
                     tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
                         var len = results.rows.length,
                             i;
@@ -56,7 +88,7 @@
                     <textarea></textarea>
                 </h1>
                 <p class="hero-cta load-hidden">
-                    <a rel="noreferrer" class="cta-btn cta-btn--hero" onclick = "myfunction()">submit</a>
+                    <a rel="noreferrer" class="cta-btn cta-btn--hero" onclick="login()">submit</a>
                 </p>
             </div>
         </section>
