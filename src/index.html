@@ -2,44 +2,10 @@
 <html lang="en" class="sr">
     <head>
         <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
         <title>Fantastic Resource Engine</title>
         <meta name="description" content="Fantastic Resource Engine"/>
-        <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.24.0/js/msal-browser.min.js"></script>
-        <script type="text/javascript">
-            var msalConfig = {
-                auth: {
-                    clientId: "c397c1cc-c3d0-465f-9a2c-f7bc3d608a0b"
-                }
-            };
-            function login() {
-                var loginRequest = {
-                    scopes: ["user.read", "openid.read"]
-                };
-                var msalInstance = new msal.PublicClientApplication(msalConfig);
-                msalInstance.loginPopup({}).then((response) => {
-                    if (response === null) {
-                        alert("There was an error authenticating you (response was null)");
-                        return;
-                    }
-                    console.log(response);
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            alert(this.responseText);
-                        }
-                    };
-                    xhttp.open("GET", "https://management.azure.com/subscriptions/9345cdc4-0b2b-4268-b99f-33720e0dc8a9/resources?api-version=2021-04-01", true);
-                    xhttp.setRequestHeader("Content-type", "application/json", 'Authorization', 'Bearer ' + response.accessToken);
-                    xhttp.send();
-                    console.log(xhttp.responseText)
-                }).catch((error) => {
-                    console.error(error);
-                });
-            }
-        </script>
         <script type="text/javascript">
             function myfunction() {
                 window.db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
@@ -65,12 +31,7 @@
                 });
             }
         </script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="styles.scss" content-type="text/css"/>
-        <script defer src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-
-        <!-- Todo: remove the below script once you finish your portfolio -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     </head>
 
@@ -85,7 +46,7 @@
                     <a rel="noreferrer">Fantastic Resource Query</a>
                 </p>
                 <h1 class="hero-title load-hidden">
-                    <textarea></textarea>
+                    <textarea type="text" aria-label="Search"></textarea>
                 </h1>
                 <p class="hero-cta load-hidden">
                     <a rel="noreferrer" class="cta-btn cta-btn--hero" onclick="login()">submit</a>
@@ -95,28 +56,23 @@
         <!-- /END Hero Section -->
 
         <!-- **** Contact Section **** -->
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Contact</h2>
-                <div class="contact-wrapper load-hidden">
-                    <a rel="noreferrer" target="_blank" class="cta-btn cta-btn--resume" href="https://github.com/geoffop">Contact Me</a>
-                </div>
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-wrapper load-hidden">
+                <a rel="noopener"  target="_blank" class="cta-btn cta-btn--resume" href=https://www.linkedin.com/in/geoffop/">Contact Me</a>
             </div>
-        </section>
-        <!-- /END Contact Section -->
-
-        <!-- **** Footer Section **** -->
+        </div></section><!-- /END Contact Section --><!-- **** Footer Section **** -->
         <footer class="footer navbar-static-bottom">
             <div class="container">
-                <a rel="noreferrer" href="#top" class="back-to-top">
+                <a title="totop" rel="noopener" href="#top" class="back-to-top">
                     <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
                 </a>
                 <div class="social-links">
-                    <a rel="noreferrer" href="https://www.linkedin.com/in/geoffop/" target="_blank">
-                        <i class="fa fa-linkedin fa-inverse"></i>
+                    <a title=linkedinlink rel="noopener" href="https://www.linkedin.com/in/geoffop/" target="_blank">
+                        <i class="fa-brands fa-linkedin"></i>
                     </a>
-                    <a rel="noreferrer" href="https://github.com/geoffop" target="_blank">
-                        <i class="fa fa-github fa-inverse"></i>
+                    <a title=githublink rel="noopener" href="https://github.com/geoffop" target="_blank">
+                        <i class="fa-brands fa-github"></i>
                     </a>
                 </div>
 
@@ -125,10 +81,8 @@
                 <!-- Notice: if you want to give me some credit, it will be huge for me! if not, put your data on it -->
                 <p class="footer__text">
                     © 2022
-                    <a rel="noreferrer" href="https://github.com/geoffop" target="_blank">Geoff Poole</a>
+                    <a rel="noopener" href="https://github.com/geoffop" target="_blank">Geoff Poole</a>
                 </p>
-
-
             </div>
         </footer>
         <!-- /END Footer Section -->
